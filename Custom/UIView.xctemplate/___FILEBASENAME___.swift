@@ -1,5 +1,4 @@
 import UIKit
-import Vaccine
 
 class ___FILEBASENAME___: UIView {
   private var layoutConstraints = [NSLayoutConstraint?]()
@@ -8,7 +7,6 @@ class ___FILEBASENAME___: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    addInjection(with: #selector(injected(_:)))
     loadView()
   }
 
@@ -21,11 +19,6 @@ class ___FILEBASENAME___: UIView {
   private func loadView() {
     NSLayoutConstraint.deactivate(layoutConstraints.compactMap({ $0 }))
     // Your code goes here.
-  }
-
-  // MARK: - Injection
-
-  @objc open func injected(_ notification: Notification) {
-    loadView()
+    self.layoutConstraints = NSLayoutConstraint.constrain()
   }
 }

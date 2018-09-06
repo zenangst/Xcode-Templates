@@ -1,4 +1,5 @@
 import UIKit
+import UserInterface
 
 class ___FILEBASENAME___: NSObject, UICollectionViewDataSource {
   weak var collectionView: UICollectionView?
@@ -6,25 +7,18 @@ class ___FILEBASENAME___: NSObject, UICollectionViewDataSource {
 
   // MARK: - Initializer
 
-  init(models: [<#Model#>] = [], collectionView: UICollectionView? = nil) {
-    self.collectionView = collectionView
+  init(models: [<#Model#>] = []) {
     self.models = models
     super.init()
-    addInjection(with: #selector(injected(_:)))
-  }
-
-  // MARK: - Injection
-
-  @objc open func injected(_ notification: Notification) {
-    guard Injection.objectWasInjected(self, notification: notification) else { return }
-    collectionView?.reloadData()
   }
 
   // MARK: - Public API
 
-  func reload(with models: [<#Model#>]) {
+  func reload(with models: [<#Model#>],
+              then handler: (() -> Void)? = nil) {
     self.models = models
     collectionView?.reloadData()
+    handler?()
   }
 
   func model(at indexPath: IndexPath) -> <#Model#> {
@@ -33,12 +27,15 @@ class ___FILEBASENAME___: NSObject, UICollectionViewDataSource {
 
   // MARK: - UICollectionViewDataSource
 
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView,
+                      numberOfItemsInSection section: Int) -> Int {
     return models.count
   }
 
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    return collectionView.dequeue(<#Cell#>.self, with: model(at: indexPath), for: indexPath) { view, model in
+  func collectionView(_ collectionView: UICollectionView,
+                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    return collectionView.dequeue(<#Cell#>.self, with: model(at: indexPath), for: indexPath) {
+      view, model in
 
     }
   }

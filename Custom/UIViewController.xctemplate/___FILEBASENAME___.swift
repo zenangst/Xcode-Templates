@@ -1,5 +1,4 @@
 import UIKit
-import Vaccine
 
 class ___FILEBASENAME___: UIViewController {
 
@@ -7,6 +6,6 @@ class ___FILEBASENAME___: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    addInjection(with: #selector(injected(_:)))
+
   }
 }

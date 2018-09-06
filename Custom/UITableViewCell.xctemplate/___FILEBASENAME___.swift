@@ -1,5 +1,5 @@
 import UIKit
-import Vaccine
+import UserInterface
 
 class ___FILEBASENAME___: UITableViewCell {
   private var layoutConstraints = [NSLayoutConstraint?]()
@@ -8,7 +8,6 @@ class ___FILEBASENAME___: UITableViewCell {
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: .default, reuseIdentifier: reuseIdentifier)
-    addInjection(with: #selector(injected(_:)))
     loadView()
   }
 
@@ -18,13 +17,9 @@ class ___FILEBASENAME___: UITableViewCell {
 
   // MARK: - Initial load
 
-  private func loadView() {
+  @objc private func loadView() {
     NSLayoutConstraint.deactivate(layoutConstraints.compactMap({ $0 }))
-  }
 
-  // MARK: - Injection
-
-  @objc open func injected(_ notification: Notification) {
-    loadView()
+    self.layoutConstraints = NSLayoutConstraint.constrain()
   }
 }
